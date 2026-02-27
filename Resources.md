@@ -10,6 +10,10 @@
 
 ## **Tutorials**
 
+**CUDA in Summary**
+
+[Give Me 30 min, I'll Make CUDA Click Forever](https://www.youtube.com/watch?v=xewKxorikwE)
+
 **Parallel Computing**
 
 [Stanford CS149 I Parallel Computing](https://www.youtube.com/playlist?list=PLoROMvodv4rMp7MTFr4hQsDEcX7Bx6Odp)
