@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+
 using namespace std;
 
 int main() {
@@ -8,10 +10,10 @@ int main() {
 
     // Check for nullptr
     if (ptr != nullptr) {
-    printf("2. ptr is NULL cannot dereference");
+        printf("2. ptr is NULL cannot dereference");
+        return;
+    }
 
-    }
-    else {
-        // ptr is null
-    }
+    // Allocate memory 
+    ptr = malloc(sizeof(int));
 }
