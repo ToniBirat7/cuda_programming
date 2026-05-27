@@ -15,5 +15,8 @@ int main() {
     }
 
     // Allocate memory 
-    ptr = malloc(sizeof(int));
+    ptr = new int;
+    if(ptr == nullptr) {
+        printf("3. Memory Allocation Failed");
+    }
 }
