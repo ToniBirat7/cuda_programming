@@ -3,9 +3,9 @@ using namespace std;
 
 int main() {
     int x = 42;
-    int* ptr = &x; // Stores the pointer to x 
-    int** ptr2 = &ptr; // 
-    int***ptr3 = &ptr2;
+    int* p1 = &x;
+
+    printf("P1 Value: %")
 
     printf("Value: %d\n", ***ptr3);
 }
