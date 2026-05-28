@@ -11,7 +11,7 @@ int main() {
     // Check for nullptr
     if (ptr != nullptr) {
         printf("2. ptr is NULL cannot dereference");
-        return;
+        return 0;
     }
 
     // Allocate memory 
@@ -19,4 +19,10 @@ int main() {
     if(ptr == nullptr) {
         printf("3. Memory Allocation Failed");
     }
+
+    int x = 4;
+
+    ptr = &x;
+    printf("4. Value of x: %d\n", *ptr);
+
 }
