@@ -8,7 +8,6 @@ struct Point
     float y;
 };
 
-
 int main() {
     Point x = {1.1, 2.5};
 
