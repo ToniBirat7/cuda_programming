@@ -22,6 +22,20 @@ void c_style_cast() {
     
     int int_pi = (int)pi;
     printf("pi: %d\n", int_pi);
+
+    printf("Int to Char");
+
+    int a = 65;
+    char c = (char)a;
+    printf("int -> char: %c\n", c);
+}
+
+void named_static_cast() {
+    double a = 3.14;
+
+    int i = static_cast<int>(a);
+    printf("a: %d\n", i);
+
 }
 
 int main() {
@@ -30,6 +44,9 @@ int main() {
 
     printf("C Style Casting: \n");
     c_style_cast();
+
+    printf("Named Static Cast: \n");
+    named_static_cast();
 
     return 0;
 }
