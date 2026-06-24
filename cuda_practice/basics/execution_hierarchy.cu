@@ -74,7 +74,7 @@ const int N = 12;
     // That is exactly why you are forced to use cudaMemcpy(..., cudaMemcpyHostToDevice). You have to hire a delivery truck to carry the number 5 across the PCIe highway to the VRAM address stored on your piece of paper.
 
     // Copy the CPU data to the memory just allocated memory address, i.e. h_A (CPU) => d_A (GPU)
-    cudaMemcpy(d_A, h_A, bytes, cudaMemcpyHostToHost);
+    cudaMemcpy(d_A, h_A, bytes, cudaMemcpyHostToDevice);
     cudaMemcpy(d_B, h_B, bytes, cudaMemcpyHostToDevice);
 
     // Launch kernel (3 Blocks, 4 Threads per Block)
