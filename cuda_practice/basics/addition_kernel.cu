@@ -65,4 +65,11 @@ const int N = 12;
     cudaMalloc(&d_A, bytes);
     cudaMalloc(&d_B, bytes);
     cudaMalloc(&d_C, bytes);
+
+    // The pointer on the RAM just stores of allocated address of the VRAm
+    // If we try to access or read using that address on GPU d_A[0] = 5; // CRASH! SEGMENTATION FAULT! 
+
+    // Your CPU looks at the paper (d_A), sees the address 0xGPU_999, and tries to reach out and put the number 5 in it. But the CPU Operating System steps in and says: "Hey! 0xGPU_999 is across the PCIe highway inside the graphics card. You don't have physical access to touch that memory from here!"
+
+    // That is exactly why you are forced to use cudaMemcpy(..., cudaMemcpyHostToDevice). You have to hire a delivery truck to carry the number 5 across the PCIe highway to the VRAM address stored on your piece of paper.
 }
