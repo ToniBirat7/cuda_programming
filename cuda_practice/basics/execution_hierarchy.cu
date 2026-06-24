@@ -72,4 +72,31 @@ const int N = 12;
     // Your CPU looks at the paper (d_A), sees the address 0xGPU_999, and tries to reach out and put the number 5 in it. But the CPU Operating System steps in and says: "Hey! 0xGPU_999 is across the PCIe highway inside the graphics card. You don't have physical access to touch that memory from here!"
 
     // That is exactly why you are forced to use cudaMemcpy(..., cudaMemcpyHostToDevice). You have to hire a delivery truck to carry the number 5 across the PCIe highway to the VRAM address stored on your piece of paper.
+
+    // Copy the CPU data to the memory just allocated memory address, i.e. h_A (CPU) => d_A (GPU)
+    cudaMemcpy(d_A, h_A, bytes, cudaMemcpyHostToHost);
+    cudaMemcpy(d_B, h_B, bytes, cudaMemcpyHostToDevice);
+
+    // Launch kernel (3 Blocks, 4 Threads per Block)
+    addVectors<<<3, 4>>>(d_A, d_B, d_C, N);
+
+    // Wait for the GPU to finish 
+    cudaDeviceSynchronize();
+
+    // Copy result that is in the GPU, and the pointer to that address is saved by d_C which is currently in the CPU. So we need to move the data that d_C is pointing in the GPU to h_C in CPU
+    cudaMemcpy(h_C, d_C, bytes, cudaMemcpyDeviceToHost);
+
+    // Print final result 
+    cout << "\nFinal Output:\n";
+    for (int i = 0; i < N; i++) {
+        cout << h_C[i] << " ";
+    }
+    cout << "\n";
+
+    // Free memory
+    cudaFree(d_A);
+    cudaFree(d_B);
+    cudaFree(d_C);
+
+    return 0;
 }
