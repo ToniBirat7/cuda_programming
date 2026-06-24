@@ -46,15 +46,23 @@ __global__ void addVectors(int *A, int *B, int *C, int N)
 }
 
 int main() {
-    // Number of values
-    const int N = 12;
+const int N = 12;
+    size_t bytes = N * sizeof(int);
 
+    // Host (CPU) Arrays
     int h_A[N] = {1,2,3,4,5,6,7,8,9,10,11,12};
     int h_B[N] = {10,20,30,40,50,60,70,80,90,100,110,120};
     int h_C[N];
 
-    // Pointers to the memory GPU
+    // Device (GPU) Pointers
     int *d_A, *d_B, *d_C;
 
     // Allocate GPU memory
-}   cudaMalloc3D()
+    // Pass the address of the pointer that is in the RAM, that will hold the address of the allocated memory in the VRAM
+    // We need to always pass the address of the pointer, not only the variable otherwise pass by value
+
+    // Because d_A is already a pointer, taking the address of it (&d_A) creates a Double Pointer (int**). cudaMalloc requires a double pointer so it can modify the original single pointer
+    cudaMalloc(&d_A, bytes);
+    cudaMalloc(&d_B, bytes);
+    cudaMalloc(&d_C, bytes);
+}
