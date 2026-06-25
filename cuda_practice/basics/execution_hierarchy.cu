@@ -59,14 +59,14 @@ const int N = 12;
 
     // Allocate GPU memory
     // Pass the address of the pointer that is in the RAM, that will hold the address of the allocated memory in the VRAM
-    // We need to always pass the address of the pointer, not only the variable otherwise pass by value
+    // We need to always pass the address (&) of the pointer, not only the variable otherwise pass by value
 
     // Because d_A is already a pointer, taking the address of it (&d_A) creates a Double Pointer (int**). cudaMalloc requires a double pointer so it can modify the original single pointer
     cudaMalloc(&d_A, bytes);
     cudaMalloc(&d_B, bytes);
     cudaMalloc(&d_C, bytes);
 
-    // The pointer on the RAM just stores of allocated address of the VRAm
+    // The pointer on the RAM just stores of allocated address of the VRAM
     // If we try to access or read using that address on GPU d_A[0] = 5; // CRASH! SEGMENTATION FAULT! 
 
     // Your CPU looks at the paper (d_A), sees the address 0xGPU_999, and tries to reach out and put the number 5 in it. But the CPU Operating System steps in and says: "Hey! 0xGPU_999 is across the PCIe highway inside the graphics card. You don't have physical access to touch that memory from here!"
